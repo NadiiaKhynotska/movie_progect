@@ -8,7 +8,7 @@ const Header: FC<IProps> = () => {
     
     return (
         <div>
-            Header
+
         </div>
     );
 };
