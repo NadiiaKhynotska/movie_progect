@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
-import {useAppSelector} from "../../hooc/useAppSelector";
-import {useAppDispatch} from "../../hooc/useAppDispatch";
-import {movieActions} from "../../redux/slices/movieSlice";
 import {useSearchParams} from "react-router-dom";
 
+import {useAppDispatch, useAppSelector} from "../../hooc";
+import {movieActions} from "../../redux";
+import {MovieCard} from "./MovieCard";
+
+
 const Movies = () => {
-    const {movies} = useAppSelector(state => state.movies);
+    const {movies,total_pages} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({page: '1'});
     const page = +query.get('page')
@@ -17,10 +19,15 @@ const Movies = () => {
 
     console.log(movies)
 
-    return (
-        <div>
 
-        </div>
+
+    return (
+        <>
+            {
+                movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
+            }
+
+        </>
     );
 };
 

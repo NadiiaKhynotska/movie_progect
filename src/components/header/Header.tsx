@@ -14,7 +14,7 @@ const Header: FC<IProps> = () => {
 
 
     return (
-        <AppBar position={"static"} color={"transparent"}>
+        <AppBar position={"sticky"} color={"primary"}>
             <Toolbar>
                 <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
                     <TheatersIcon/>
