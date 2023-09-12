@@ -1,8 +1,9 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IMovie} from "../../interfaces";
-import {movieService} from "../../services";
 import {IPagination} from "../../interfaces/paginationInterface";
 import {AxiosError} from "axios";
+import {movieService} from "../../services";
+
 
 interface IState {
     movies: IMovie[];
@@ -18,12 +19,15 @@ const initialState: IState = {
     total_results: null,
 }
 
-const getAll = createAsyncThunk<{data:IPagination<IMovie>, page:number}, {page: number }>(
-    'movieSlice/getAll',
-    async ({page}, {rejectWithValue}) => {
+const getSearchedMovies = createAsyncThunk<{ data: IPagination<IMovie>, page: number, query: string }, {
+    page: number,
+    query: string
+}>(
+    'searchSlice/getSearchedMovies',
+    async ({page, query}, {rejectWithValue}) => {
         try {
-            const {data}= await movieService.getAll(page)
-            return {data,page}
+            const {data} = await movieService.searchByKeyWord(query, page)
+            return {data, page, query}
         } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response.data)
@@ -31,27 +35,28 @@ const getAll = createAsyncThunk<{data:IPagination<IMovie>, page:number}, {page: 
     }
 )
 
-const movieSlice = createSlice({
-    name: 'movieSlice',
+const searchSlice = createSlice({
+    name: 'searchSlice',
     initialState,
     reducers: {},
     extraReducers: builder => builder
-        .addCase(getAll.fulfilled, (state, action) => {
+        .addCase(getSearchedMovies.fulfilled, (state, action) => {
             state.movies = action.payload.data.results
             state.page = action.payload.data.page
             state.total_pages = action.payload.data.total_pages
             state.total_results = action.payload.data.total_results
+
         })
 })
 
+const {reducer:searchReducer,actions}= searchSlice
 
-const {reducer: movieReducer, actions} = movieSlice
-const movieActions = {
+const searchActions = {
     ...actions,
-    getAll
+    getSearchedMovies
 }
 
 export {
-    movieActions,
-    movieReducer,
+    searchActions,
+    searchReducer
 }

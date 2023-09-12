@@ -1,15 +1,16 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
+import {Header, Search} from "../components";
 
-import {Header} from "../components";
 
 const MainLayout = () => {
     
     return (
-        <div>
-           <Header/>
+        <>
+            <Header/>
+            <Search/>
             <Outlet/>
-        </div>
+        </>
     );
 };
 

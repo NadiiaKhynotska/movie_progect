@@ -11,11 +11,15 @@ const MovieCard: FC<IProps> = ({movie}) => {
     const{poster_path,title,vote_average}= movie
 
     return (
-        <Box width='300px' >
-            <Card>
+        <Box width='350px' >
+            <Card
+                sx={{
+                    height:600,
+                    margin:1
+                }}>
                 <CardMedia
                     component='img'
-                    height='400'
+                    height='450'
                     image={posterUrl+poster_path}
                     alt={title}
                 />

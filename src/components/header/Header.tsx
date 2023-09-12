@@ -25,7 +25,6 @@ const Header: FC<IProps> = () => {
                 <Stack direction='row' spacing={2} >
                     <Button color='inherit' onClick={() => navigate('movies')}>All movies</Button>
                     <Button color='inherit' onClick={() => navigate('genres')}>All genres</Button>
-                    <Button color='inherit'>About</Button>
 
                     <Stack  >
                         <IconButton size='medium' edge='end' color='inherit' aria-label='logo'>
@@ -35,17 +34,6 @@ const Header: FC<IProps> = () => {
                             Nadiia
                         </Typography>
                     </Stack>
-                    {/*<Button*/}
-                    {/*    color='inherit'*/}
-                    {/*    id='resources-button'*/}
-                    {/*    aria-controls={open ? 'resources-menu' : undefined}*/}
-                    {/*    aria-haspopup='true'*/}
-                    {/*    aria-expanded={open ? 'true' : undefined}*/}
-                    {/*    // endIcon={<KeyboardArrowDownIcon />}*/}
-                    {/*    onClick={handleClick}>*/}
-                    {/*    Resources*/}
-                    {/*</Button>*/}
-                    {/*<Button color='inherit'>Login</Button>*/}
                 </Stack>
             </Toolbar>
         </AppBar>

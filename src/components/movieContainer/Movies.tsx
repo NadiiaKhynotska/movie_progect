@@ -4,6 +4,7 @@ import {useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooc";
 import {movieActions} from "../../redux";
 import {MovieCard} from "./MovieCard";
+import {styled} from "@mui/material";
 
 
 const Movies = () => {
@@ -19,15 +20,19 @@ const Movies = () => {
 
     console.log(movies)
 
-
+const Wrapper = styled('div')({
+    display:"flex",
+    flexFlow: "wrap",
+    justifyContent:"center",
+    alignItems:"center"
+})
 
     return (
-        <>
+        <Wrapper>
             {
                 movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
             }
-
-        </>
+        </Wrapper>
     );
 };
 
