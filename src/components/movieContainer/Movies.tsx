@@ -9,6 +9,7 @@ import {styled} from "@mui/material";
 
 const Movies = () => {
     const {movies,total_pages} = useAppSelector(state => state.movies);
+    const {searchedMovies} = useAppSelector(state => state.searchMovies);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({page: '1'});
     const page = +query.get('page')
@@ -18,7 +19,7 @@ const Movies = () => {
         setQuery(prev => ({...prev, page: prev.get('page')}))
     }, [page, setQuery,dispatch]);
 
-    console.log(movies)
+    console.log(movies, searchedMovies)
 
 const Wrapper = styled('div')({
     display:"flex",
@@ -29,7 +30,8 @@ const Wrapper = styled('div')({
 
     return (
         <Wrapper>
-            {
+            {searchedMovies.length !== 0 ?
+                searchedMovies.map(movie => <MovieCard movie={movie} key={movie.id}/>) :
                 movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
             }
         </Wrapper>

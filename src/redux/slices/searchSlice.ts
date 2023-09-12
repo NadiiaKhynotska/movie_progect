@@ -6,14 +6,14 @@ import {movieService} from "../../services";
 
 
 interface IState {
-    movies: IMovie[];
+    searchedMovies: IMovie[];
     page: number;
     total_pages: number;
     total_results: number;
 }
 
 const initialState: IState = {
-    movies: [],
+    searchedMovies: [],
     page: null,
     total_pages: null,
     total_results: null,
@@ -41,7 +41,7 @@ const searchSlice = createSlice({
     reducers: {},
     extraReducers: builder => builder
         .addCase(getSearchedMovies.fulfilled, (state, action) => {
-            state.movies = action.payload.data.results
+            state.searchedMovies = action.payload.data.results
             state.page = action.payload.data.page
             state.total_pages = action.payload.data.total_pages
             state.total_results = action.payload.data.total_results

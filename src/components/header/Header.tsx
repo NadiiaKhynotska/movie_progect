@@ -23,7 +23,7 @@ const Header: FC<IProps> = () => {
                     MOVIE PROJECT
                 </Typography>
                 <Stack direction='row' spacing={2} >
-                    <Button color='inherit' onClick={() => navigate('movies')}>All movies</Button>
+                    <Button color='inherit' onClick={() => navigate('movies',)}>All movies</Button>
                     <Button color='inherit' onClick={() => navigate('genres')}>All genres</Button>
 
                     <Stack  >
