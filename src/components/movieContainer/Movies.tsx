@@ -3,7 +3,7 @@ import {useSearchParams} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooc";
 import {movieActions, searchActions} from "../../redux";
-import {MovieCard} from "./MovieCard";
+import {Movie} from "./Movie";
 import {styled} from "@mui/material";
 import {Search} from "../searchComponent/Search";
 
@@ -39,8 +39,8 @@ const Wrapper = styled('div')({
         <Wrapper>
             {/*<Search setQueryVal={setQueryVal}/>*/}
             {searchedMovies.length !== 0 ?
-                searchedMovies.map(movie => <MovieCard movie={movie} key={movie.id}/>) :
-                movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
+                searchedMovies.map(movie => <Movie movie={movie} key={movie.id}/>) :
+                movies.map(movie => <Movie movie={movie} key={movie.id}/>)
             }
         </Wrapper>
     );

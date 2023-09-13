@@ -2,13 +2,19 @@ import {FC, PropsWithChildren} from 'react';
 import {IMovie} from "../../interfaces";
 import {Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Stack, Typography} from "@mui/material";
 import {posterUrl} from "../../constans";
+import {useNavigate} from "react-router-dom";
 
 interface IProps extends PropsWithChildren {
     movie: IMovie;
 }
 
-const MovieCard: FC<IProps> = ({movie}) => {
-    const{poster_path,title,vote_average}= movie
+const Movie: FC<IProps> = ({movie}) => {
+    const{poster_path,title,vote_average,id}= movie
+    const navigate = useNavigate();
+
+    const showMovieInfo = () => {
+        navigate({pathname:`${id}`},{state:{...movie}})
+    };
 
     return (
         <Box width='350px' >
@@ -38,11 +44,11 @@ const MovieCard: FC<IProps> = ({movie}) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size='small'> More</Button>
+                    <Button size='small' onClick={showMovieInfo}> More</Button>
                 </CardActions>
             </Card>
         </Box>
     );
 };
 
-export {MovieCard};
+export {Movie};
