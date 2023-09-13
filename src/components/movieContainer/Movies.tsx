@@ -1,25 +1,32 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSearchParams} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooc";
-import {movieActions} from "../../redux";
+import {movieActions, searchActions} from "../../redux";
 import {MovieCard} from "./MovieCard";
 import {styled} from "@mui/material";
+import {Search} from "../searchComponent/Search";
 
 
 const Movies = () => {
     const {movies,total_pages} = useAppSelector(state => state.movies);
     const {searchedMovies} = useAppSelector(state => state.searchMovies);
     const dispatch = useAppDispatch();
-    const [query, setQuery] = useSearchParams({page: '1'});
-    const page = +query.get('page')
+    const [query, setQuery] = useSearchParams({page: '1', query:''});
+    const page = + query.get('page')
+    const [queryVal, setQueryVal] = useState(query.get('query'))
+
 
     useEffect(() => {
-        dispatch(movieActions.getAll({page}))
+        if(searchedMovies.length ===0){
+            dispatch(movieActions.getAll({page}))
+        }else{
+            dispatch(searchActions.getSearchedMovies({page:page, query:queryVal}))
+        }
         setQuery(prev => ({...prev, page: prev.get('page')}))
     }, [page, setQuery,dispatch]);
 
-    console.log(movies, searchedMovies)
+    console.log(movies, searchedMovies, queryVal)
 
 const Wrapper = styled('div')({
     display:"flex",
@@ -30,6 +37,7 @@ const Wrapper = styled('div')({
 
     return (
         <Wrapper>
+            {/*<Search setQueryVal={setQueryVal}/>*/}
             {searchedMovies.length !== 0 ?
                 searchedMovies.map(movie => <MovieCard movie={movie} key={movie.id}/>) :
                 movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)

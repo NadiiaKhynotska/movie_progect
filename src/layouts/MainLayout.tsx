@@ -8,7 +8,7 @@ const MainLayout = () => {
     return (
         <>
             <Header/>
-            <Search/>
+            {/*<Search/>*/}
             <Outlet/>
         </>
     );

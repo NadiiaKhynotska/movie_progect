@@ -1,6 +1,6 @@
 import {FC, PropsWithChildren} from 'react';
 import {IMovie} from "../../interfaces";
-import {Box, Button, Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
+import {Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Stack, Typography} from "@mui/material";
 import {posterUrl} from "../../constans";
 
 interface IProps extends PropsWithChildren {
@@ -24,6 +24,15 @@ const MovieCard: FC<IProps> = ({movie}) => {
                     alt={title}
                 />
                 <CardContent>
+                    <Stack spacing={2}>
+                        <Rating
+                            max={10}
+                            value={vote_average}
+                            precision={0.5}
+                            size='small'
+                            readOnly
+                        />
+                    </Stack>
                     <Typography gutterBottom variant='h5' component='div'>
                         {title}
                     </Typography>
