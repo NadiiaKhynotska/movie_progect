@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {RouterProvider} from "react-router-dom";
-import {router} from "./router";
 import {Provider} from "react-redux";
+
+import {router} from "./router";
 import {store} from "./redux";
-import {ThemLayout} from "./layouts/ThemLayout";
+import {ThemeContextProvider} from "./theme";
 
 
 const root = ReactDOM.createRoot(
@@ -12,9 +13,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <Provider store={store}>
-        <ThemLayout>
+       <ThemeContextProvider>
             <RouterProvider router={router}/>
-        </ThemLayout>
+       </ThemeContextProvider>
     </Provider>
 );
 
