@@ -23,9 +23,9 @@ const Movies = () => {
 
 
     useEffect(() => {
-        if(href === `http://localhost:3000/movies?page=${page}`){
+        if(!href.includes('genres/all')){
             dispatch(movieActions.getAll({page}))
-        }else if(href === `http://localhost:3000/genres/all?page=${page}`){
+        }else{
             dispatch(movieActions.getByGenre({page, with_genres:id}))
             // dispatch(searchActions.getSearchedMovies({page:page, query:queryVal}))
         }
