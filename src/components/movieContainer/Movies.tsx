@@ -15,24 +15,23 @@ const Movies = () => {
     const {state:id} = useAppLocation<number>();
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({page: '1', query:''});
-    const page = + query.get('page')
+    const page = +query.get('page')
     const [queryVal, setQueryVal] = useState(query.get('query'))
 
     const href = window.location.href;
-    console.log(href)
+    console.log(href, movies)
 
 
     useEffect(() => {
-        if(!href.includes('http://localhost:3000/genres/all')){
-            dispatch(movieActions.getAll({page}))
-        }else{
+        if(href===`http://localhost:3000/genres/all?${page}`){
             dispatch(movieActions.getByGenre({page, with_genres:id}))
+        }else if(href ===` http://localhost:3000/movies?${page}`){
+            dispatch(movieActions.getAll({page}))
             // dispatch(searchActions.getSearchedMovies({page:page, query:queryVal}))
         }
         setQuery(prev => ({...prev, page: prev.get('page')}))
     }, [page,href]);
 
-    console.log(movies, searchedMovies, queryVal)
 
 const Wrapper = styled('div')({
     display:"flex",
