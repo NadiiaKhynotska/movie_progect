@@ -23,14 +23,14 @@ const Movies = () => {
 
 
     useEffect(() => {
-        if(href === 'http://localhost:3000/movies'){
+        if(href === `http://localhost:3000/movies?page=${page}`){
             dispatch(movieActions.getAll({page}))
-        }else if(href === 'http://localhost:3000/genres/all'){
+        }else if(href === `http://localhost:3000/genres/all?page=${page}`){
             dispatch(movieActions.getByGenre({page, with_genres:id}))
             // dispatch(searchActions.getSearchedMovies({page:page, query:queryVal}))
         }
         setQuery(prev => ({...prev, page: prev.get('page')}))
-    }, [page, setQuery,dispatch]);
+    }, [page]);
 
     console.log(movies, searchedMovies, queryVal)
 

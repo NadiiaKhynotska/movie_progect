@@ -84,11 +84,10 @@ const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
                     </Typography>
                     <Stack spacing={3}>
                         <Typography>Genres:</Typography>
-
                         {genre_ids?.map(movieGenre => (
-                        <Badge>{genres?.filter(value => value.id === movieGenre)[0]?.name}</Badge>))}
+                        <Badge key={movieGenre}>{genres?.filter(value => value.id === movieGenre)[0]?.name}</Badge>))}
                     </Stack>
-                    <Button size='small' onClick={()=>navigate(-1)} sx={{margin:7}}> Back to all movies</Button>
+                    <Button size='small' onClick={()=>navigate(-1)} sx={{margin:7}} > Back to all movies</Button>
                 </Card>
             </Box>
         </Wrapper>
