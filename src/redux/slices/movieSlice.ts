@@ -31,6 +31,19 @@ const getAll = createAsyncThunk<{data:IPagination<IMovie>, page:number}, {page: 
     }
 )
 
+const getByGenre = createAsyncThunk<{ data: IPagination<IMovie>, page: number }, { page: number, with_genres: number }>(
+    'movieSlice/getByGenre',
+    async ({page, with_genres}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getByGenre(page, with_genres)
+            return {data, page}
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response.data)
+        }
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -42,13 +55,20 @@ const movieSlice = createSlice({
             state.total_pages = action.payload.data.total_pages
             state.total_results = action.payload.data.total_results
         })
+        .addCase(getByGenre.fulfilled, (state, action) => {
+            state.movies =action.payload.data.results
+            state.page = action.payload.data.page
+            state.total_pages = action.payload.data.total_pages
+            state.total_results = action.payload.data.total_results
+        })
 })
 
 
 const {reducer: movieReducer, actions} = movieSlice
 const movieActions = {
     ...actions,
-    getAll
+    getAll,
+    getByGenre,
 }
 
 export {

@@ -1,13 +1,19 @@
 import {FC, PropsWithChildren} from 'react';
 import {IGenre} from "../../interfaces";
 import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 interface IProps extends PropsWithChildren {
     genre: IGenre
 }
 
 const Genre: FC<IProps> = ({genre}) => {
-    const {name} = genre
+    const {name, id} = genre
+    const navigate = useNavigate();
+
+    const showAllMoviesByGenres = () => {
+        navigate({pathname:`all`},{state:id})
+    };
 
     return (
     <Box width='250px' >
@@ -26,7 +32,7 @@ const Genre: FC<IProps> = ({genre}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size='small'> More</Button>
+                <Button size='small' onClick={showAllMoviesByGenres}> More</Button>
             </CardActions>
         </Card>
     </Box>

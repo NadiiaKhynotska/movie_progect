@@ -12,7 +12,6 @@ const Genres = () => {
         dispatch(genreActions.getAllGenres())
     }, [dispatch]);
 
-    console.log(genres)
 
     const Wrapper = styled('div')({
         display:"flex",

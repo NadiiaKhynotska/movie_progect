@@ -5,7 +5,6 @@ import {
     Box,
     Button,
     Card,
-    CardActions,
     CardContent,
     CardMedia,
     Rating,

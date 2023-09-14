@@ -6,16 +6,17 @@ import {useNavigate} from "react-router-dom";
 
 interface IProps extends PropsWithChildren {
     movie: IMovie;
+    movieByGenre: IMovie;
 }
 
-const Movie: FC<IProps> = ({movie}) => {
+const Movie: FC<IProps> = ({movie, movieByGenre}) => {
     const{poster_path,title,vote_average,id}= movie
+    const {id:idByGenre, title:titleByGenre, vote_average:vote_averageByGenre, poster_path:poster_pathByGenre} = movieByGenre
     const navigate = useNavigate();
 
     const showMovieInfo = () => {
         navigate({pathname:`${id}`},{state:{...movie}})
     };
-
     return (
         <Box width='350px' >
             <Card

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Genres} from "../components/genreContainer/Genres";
+import {Genres} from "../components";
 
 const GenrePage = () => {
     
