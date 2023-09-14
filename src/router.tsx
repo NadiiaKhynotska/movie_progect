@@ -28,6 +28,10 @@ const router = createBrowserRouter([
                 element: <MoviesByGenrePage/>
             },
             {
+                path: 'genres/all/:id',
+                element:<MovieCardPage/>
+            },
+            {
                 path:'*',
                 element:<NotFoundPage/>
             }
