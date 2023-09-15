@@ -7,16 +7,16 @@ import {AxiosError} from "axios";
 interface IState {
     movies: IMovie[];
     moviesByGenres:IMovie[];
-    genreId:number;
+    searchedMovies: IMovie[];
     page: number;
     total_pages: number;
     total_results: number;
 }
 
 const initialState: IState = {
-    movies: null,
-    moviesByGenres:null,
-    genreId:null,
+    movies: [],
+    moviesByGenres: [],
+    searchedMovies: [],
     page: null,
     total_pages: null,
     total_results: null,
@@ -48,6 +48,22 @@ const getByGenre = createAsyncThunk<{ data: IPagination<IMovie>, page: number, w
     }
 )
 
+const getSearchedMovies = createAsyncThunk<{ data: IPagination<IMovie>, page: number, query: string }, {
+    page: number,
+    query: string
+}>(
+    'movieSlice/getSearchedMovies',
+    async ({page, query}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.searchByKeyWord(query, page)
+            return {data, page, query}
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response.data)
+        }
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -58,16 +74,25 @@ const movieSlice = createSlice({
             state.page = action.payload.data.page
             state.total_pages = action.payload.data.total_pages
             state.total_results = action.payload.data.total_results
-            state.genreId = null
-            state.moviesByGenres =[]
+            state.moviesByGenres = []
+            state.searchedMovies = []
         })
         .addCase(getByGenre.fulfilled, (state, action) => {
             state.moviesByGenres =action.payload.data.results
             state.page = action.payload.data.page
             state.total_pages = action.payload.data.total_pages
             state.total_results = action.payload.data.total_results
-            state.genreId = action.payload.with_genres
             state.movies = []
+            state.searchedMovies = []
+
+        })
+        .addCase(getSearchedMovies.fulfilled, (state, action) => {
+            state.searchedMovies = action.payload.data.results
+            state.page = action.payload.data.page
+            state.total_pages = action.payload.data.total_pages
+            state.total_results = action.payload.data.total_results
+            state.movies = []
+            state.moviesByGenres = []
 
         })
 })
@@ -78,6 +103,7 @@ const movieActions = {
     ...actions,
     getAll,
     getByGenre,
+    getSearchedMovies
 }
 
 export {
