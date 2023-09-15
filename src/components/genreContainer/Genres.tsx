@@ -19,7 +19,7 @@ const Genres = () => {
         justifyContent:"center",
         alignItems:"center"
     })
-    
+
     return (
         <Wrapper>
             {genres.map(genre =><Genre key={genre.id} genre={genre}/>)}

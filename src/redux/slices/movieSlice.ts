@@ -6,13 +6,17 @@ import {AxiosError} from "axios";
 
 interface IState {
     movies: IMovie[];
+    moviesByGenres:IMovie[];
+    genreId:number;
     page: number;
     total_pages: number;
     total_results: number;
 }
 
 const initialState: IState = {
-    movies: [],
+    movies: null,
+    moviesByGenres:null,
+    genreId:null,
     page: null,
     total_pages: null,
     total_results: null,
@@ -31,12 +35,12 @@ const getAll = createAsyncThunk<{data:IPagination<IMovie>, page:number}, {page: 
     }
 )
 
-const getByGenre = createAsyncThunk<{ data: IPagination<IMovie>, page: number }, { page: number, with_genres: number }>(
+const getByGenre = createAsyncThunk<{ data: IPagination<IMovie>, page: number, with_genres: number }, { page: number, with_genres: number }>(
     'movieSlice/getByGenre',
     async ({page, with_genres}, {rejectWithValue}) => {
         try {
             const {data} = await movieService.getByGenre(page, with_genres)
-            return {data, page}
+            return {data, page, with_genres}
         } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response.data)
@@ -54,12 +58,17 @@ const movieSlice = createSlice({
             state.page = action.payload.data.page
             state.total_pages = action.payload.data.total_pages
             state.total_results = action.payload.data.total_results
+            state.genreId = null
+            state.moviesByGenres =[]
         })
         .addCase(getByGenre.fulfilled, (state, action) => {
-            state.movies =action.payload.data.results
+            state.moviesByGenres =action.payload.data.results
             state.page = action.payload.data.page
             state.total_pages = action.payload.data.total_pages
             state.total_results = action.payload.data.total_results
+            state.genreId = action.payload.with_genres
+            state.movies = []
+
         })
 })
 

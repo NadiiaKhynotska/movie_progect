@@ -24,7 +24,8 @@ const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
     const {title, poster_path, vote_average, genre_ids, overview} = currentMovie
     const navigate = useNavigate();
 
-
+    const href = window.location.href;
+    console.log(href)
 
     const Wrapper = styled('div')({
         display:"flex",
@@ -85,7 +86,7 @@ const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
                     <Stack spacing={3}>
                         <Typography>Genres:</Typography>
                         {genre_ids?.map(movieGenre => (
-                        <Badge>{genres?.filter(value => value.id === movieGenre)[0]?.name}</Badge>))}
+                        <Badge key={movieGenre}>{genres?.filter(value => value.id === movieGenre)[0]?.name}</Badge>))}
                     </Stack>
                     <Button size='small' onClick={()=>navigate(-1)} sx={{margin:7}} > Back to all movies</Button>
                 </Card>
