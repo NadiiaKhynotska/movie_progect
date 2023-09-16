@@ -1,4 +1,5 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
+
 import {MainLayout} from "./layouts";
 import {GenrePage, MovieCardPage, MoviesByGenrePage, MoviesPage, NotFoundPage, SearchMoviePage} from "./pages";
 

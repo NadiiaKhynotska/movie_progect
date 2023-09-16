@@ -1,9 +1,10 @@
 import {FC, PropsWithChildren} from 'react';
+import {useNavigate} from "react-router-dom";
+import {Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Stack} from "@mui/material";
+
 import {IMovie} from "../../interfaces";
-import {Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Stack, Typography} from "@mui/material";
 import {posterUrl} from "../../constans";
 import notImg from "../../assets/not-found-img.jpg"
-import {useNavigate} from "react-router-dom";
 
 interface IProps extends PropsWithChildren {
     movie: IMovie;
@@ -17,6 +18,7 @@ const Movie: FC<IProps> = ({movie}) => {
     const showMovieInfo = () => {
             navigate({pathname: `${id}`}, {state: {...movie}})
     };
+
     return (
         <Box width='350px' >
             <Card

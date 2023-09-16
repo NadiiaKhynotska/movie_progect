@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
+import {styled} from "@mui/material";
+
 import {useAppDispatch, useAppSelector} from "../../hooc";
 import {genreActions} from "../../redux";
 import {Genre} from "./Genre";
-import {styled} from "@mui/material";
 
 const Genres = () => {
     const dispatch = useAppDispatch();

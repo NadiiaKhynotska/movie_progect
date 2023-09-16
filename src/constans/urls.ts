@@ -8,7 +8,6 @@ const movie = '/movie';
 const urls = {
     films:{
         base: `/discover${movie}`,
-        byId: (id:number) =>`${movie}/${id}`,
         search: `/search${movie}`,
         byCredits: (id:number)=>`${movie}/${id}/credits`
     },

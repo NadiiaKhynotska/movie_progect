@@ -1,5 +1,4 @@
 import {FC, PropsWithChildren} from 'react';
-import {IGenre, IMovie} from "../../interfaces";
 import {
     Badge,
     Box,
@@ -12,6 +11,8 @@ import {
     styled,
     Typography
 } from "@mui/material";
+
+import {IGenre, IMovie} from "../../interfaces";
 import {posterUrl} from "../../constans";
 import {useNavigate} from "react-router-dom";
 import notImg from "../../assets/not-found-img.jpg"
@@ -24,9 +25,6 @@ interface IProps extends PropsWithChildren {
 const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
     const {title, poster_path, vote_average, genre_ids, overview} = currentMovie
     const navigate = useNavigate();
-
-    const href = window.location.href;
-    console.log(href)
 
     const Wrapper = styled('div')({
         display:"flex",
@@ -69,8 +67,9 @@ const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
             <Box width='60%'>
                 <Card
                     sx={{
-                        height: 600,
+                        height: 800,
                         margin: 2,
+                        padding:2,
                         display:'flex',
                         justifyContent:'center',
                         alignItems:'center',

@@ -1,29 +1,31 @@
 import React, {FC, PropsWithChildren, useEffect} from 'react';
+import {useSearchParams} from "react-router-dom";
+import {Card, CardMedia, Stack, styled} from "@mui/material";
+
 import {useAppDispatch, useAppSelector} from "../../hooc";
 import {movieActions} from "../../redux";
-import {useSearchParams} from "react-router-dom";
 import {Movie} from "./Movie";
-import {Card, CardMedia, styled} from "@mui/material";
 import movieCamera from '../../assets/movie-camera.png'
+import {PaginationComponent} from "../pagination/PaginationComponent";
 
 interface IProps extends PropsWithChildren {
     keyWord: string
 }
 
 const SearchMovies: FC<IProps> = ({keyWord}) => {
+
+    const dispatch = useAppDispatch();
+    const {searchedMovies, total_pages} = useAppSelector(state => state.movies);
     localStorage.setItem('keyWord', keyWord)
     const keyword = localStorage.getItem('keyWord')
-    const dispatch = useAppDispatch();
-    const {searchedMovies} = useAppSelector(state => state.movies);
-    const [query, setQuery] = useSearchParams({page: '1', query: `${keyword}`});
+    const [query] = useSearchParams({page: '1'});
     const page = +query.get('page')
 
 
     useEffect(() => {
         dispatch(movieActions.getSearchedMovies({page:page, query:keyword}))
-    }, [keyword]);
+    }, [keyword, page, dispatch]);
 
-    console.log(searchedMovies)
     const Wrapper = styled('div')({
         display: "flex",
         flexFlow: "wrap",
@@ -32,7 +34,8 @@ const SearchMovies: FC<IProps> = ({keyWord}) => {
     })
 
     return (
-        <Wrapper>
+        <Stack>
+            <Wrapper>
             {searchedMovies.length === 0 ?
                 <Card
                     sx={{
@@ -48,7 +51,10 @@ const SearchMovies: FC<IProps> = ({keyWord}) => {
                 </Card>
                 :
                 searchedMovies.map(movie => <Movie movie={movie} key={movie.id}/>)}
-        </Wrapper>
+            </Wrapper>
+
+            <Stack sx={{marginX:'auto'}}>{total_pages > 1 && <PaginationComponent/>}</Stack>
+        </Stack>
     );
 };
 

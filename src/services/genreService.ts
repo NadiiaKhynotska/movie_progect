@@ -1,7 +1,6 @@
 import {apiService} from "./apiService";
 import {urls} from "../constans";
-import {IGenre} from "../interfaces";
-import {IGenresResponseInterface} from "../interfaces/genresResponseInterfase";
+import {IGenre, IGenresResponseInterface} from "../interfaces";
 
 const genreService = {
     getAll :() => apiService.get<IGenresResponseInterface<IGenre>>(urls.genres.base)

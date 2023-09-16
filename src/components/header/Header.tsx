@@ -1,18 +1,11 @@
-import {FC, PropsWithChildren} from 'react';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import Face3Icon from '@mui/icons-material/Face3';
 import {AppBar, Button, IconButton, Stack, Toolbar, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import NightModeToggle from "./NightModeToggle";
 
-
-interface IProps extends PropsWithChildren {
-
-}
-
-const Header: FC<IProps> = () => {
+const Header = () => {
     const navigate = useNavigate();
-
 
     return (
         <AppBar position={"sticky"} color={"primary"}>

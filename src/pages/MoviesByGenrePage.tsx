@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+
 import {MoviesByGenres} from "../components/movieContainer/MoviesByGenres";
 import {useAppLocation} from "../hooc";
 

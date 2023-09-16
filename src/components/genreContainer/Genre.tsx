@@ -1,7 +1,8 @@
 import {FC, PropsWithChildren} from 'react';
-import {IGenre} from "../../interfaces";
 import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+
+import {IGenre} from "../../interfaces";
 
 interface IProps extends PropsWithChildren {
     genre: IGenre

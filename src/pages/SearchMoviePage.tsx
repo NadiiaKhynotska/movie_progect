@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import { SearchMovies} from "../components";
 import {Container, TextField} from "@mui/material";
+
+import { SearchMovies} from "../components";
 
 const SearchMoviePage = () => {
     const [keyWord, setKeyWord] = useState(''|| localStorage.getItem('keyWord'))
