@@ -16,7 +16,6 @@ const Casts: FC<IProps> = ({id}) => {
     useEffect(() => {
         dispatch(creditActon.getAllCasts({id}))
     }, [dispatch, id]);
-    console.log(id, casts)
 
     const renderCasts = casts.slice(0, 8)
 

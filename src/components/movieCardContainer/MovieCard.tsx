@@ -14,7 +14,7 @@ import {
 
 import {IGenre, IMovie} from "../../interfaces";
 import {posterUrl} from "../../constans";
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import notImg from "../../assets/not-found-img.jpg"
 import {Casts} from "../creditsContainer/Casts";
 
