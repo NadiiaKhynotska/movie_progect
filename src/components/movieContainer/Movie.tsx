@@ -2,6 +2,7 @@ import {FC, PropsWithChildren} from 'react';
 import {IMovie} from "../../interfaces";
 import {Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Stack, Typography} from "@mui/material";
 import {posterUrl} from "../../constans";
+import notImg from "../../assets/not-found-img.jpg"
 import {useNavigate} from "react-router-dom";
 
 interface IProps extends PropsWithChildren {
@@ -26,7 +27,7 @@ const Movie: FC<IProps> = ({movie}) => {
                 <CardMedia
                     component='img'
                     height='450'
-                    image={posterUrl+poster_path}
+                    image={!poster_path? notImg: posterUrl+poster_path}
                     alt={title}
                 />
                 <CardContent>
@@ -39,12 +40,9 @@ const Movie: FC<IProps> = ({movie}) => {
                             readOnly
                         />
                     </Stack>
-                    <Typography gutterBottom variant='h5' component='div'>
-                        {title}
-                    </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size='small' onClick={showMovieInfo}> More</Button>
+                    <Button size='medium' onClick={showMovieInfo}> {title}</Button>
                 </CardActions>
             </Card>
         </Box>

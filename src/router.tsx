@@ -36,6 +36,10 @@ const router = createBrowserRouter([
                 element:<SearchMoviePage/>
             },
             {
+                path:'search/:id',
+                element:<MovieCardPage/>
+            },
+            {
                 path:'*',
                 element:<NotFoundPage/>
             }

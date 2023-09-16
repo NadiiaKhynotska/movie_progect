@@ -1,7 +1,6 @@
 export * from './header/Header'
 export * from './movieContainer/Movies'
 export * from './movieContainer/Movie'
-export * from './searchComponent/Search'
 export * from './genreContainer/Genres'
 export * from './genreContainer/Genre'
 export * from './movieCardContainer/MovieCard'

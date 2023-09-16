@@ -1,11 +1,22 @@
-import React from 'react';
-import {SearchMovies} from "../components";
+import React, {useState} from 'react';
+import { SearchMovies} from "../components";
+import {Container, TextField} from "@mui/material";
 
 const SearchMoviePage = () => {
-    
+    const [keyWord, setKeyWord] = useState(''|| localStorage.getItem('keyWord'))
+
     return (
         <div>
-            <SearchMovies/>
+            <Container sx={{marginY:3,marginX:'auto'}}>
+                <TextField
+                    fullWidth
+                    label='Search movie by key word'
+                    value={keyWord}
+                    variant= {"standard"}
+                    onChange={(event)=>setKeyWord(event.target.value)}
+                />
+            </Container>
+            <SearchMovies keyWord={keyWord}/>
         </div>
     );
 };

@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import {posterUrl} from "../../constans";
 import {useNavigate} from "react-router-dom";
+import notImg from "../../assets/not-found-img.jpg"
 
 interface IProps extends PropsWithChildren {
     genres: IGenre[];
@@ -48,8 +49,8 @@ const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
                     }}>
                     <CardMedia
                         component='img'
-                        height='750'
-                        image={posterUrl + poster_path}
+                        height= {'750'}
+                        image={!poster_path? notImg : posterUrl + poster_path}
                         alt={title}
                     />
                     <CardContent>

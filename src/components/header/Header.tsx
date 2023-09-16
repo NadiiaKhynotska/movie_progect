@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 import NightModeToggle from "./NightModeToggle";
 
 
-
 interface IProps extends PropsWithChildren {
 
 }
@@ -18,25 +17,32 @@ const Header: FC<IProps> = () => {
     return (
         <AppBar position={"sticky"} color={"primary"}>
             <Toolbar>
-                <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
-                    <TheatersIcon/>
-                </IconButton>
-                <Typography variant='h6' component='div' sx={{flexGrow: 1}}>
-                    MOVIE PROJECT
-                </Typography>
-                <Stack direction='row' spacing={2} >
-                    <Button color='inherit' onClick={() => navigate('movies')}>All movies</Button>
-                    <Button color='inherit' onClick={() => navigate('genres')}>All genres</Button>
-
-                    <NightModeToggle/>
-
-                    <Stack  >
-                        <IconButton size='medium' edge='end' color='inherit' aria-label='logo'>
-                            <Face3Icon/>
+                <Stack direction='row' spacing={40} sx={{display:'flex', justifyContent:'space-evenly', alignItems:'center'}} >
+                    <Stack direction='row' spacing={2} sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                        <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
+                                 <TheatersIcon/>
                         </IconButton>
-                        <Typography variant='h6' component='div'>
-                            Nadiia
+                        <Typography variant='h6' component='div' sx={{flexGrow: 1}}>
+                            MOVIE PROJECT
                         </Typography>
+                    </Stack>
+
+                    <Stack spacing={2} direction={"row"}>
+                        <Button color='inherit' onClick={() => navigate('movies')}>All movies</Button>
+                        <Button color='inherit' onClick={() => navigate('genres')}>All genres</Button>
+                        <Button color='inherit' onClick={() => navigate('search')}>Search movies</Button>
+                    </Stack>
+
+                    <Stack spacing={2} direction='row'>
+                        <NightModeToggle/>
+                        <Stack>
+                            <IconButton size='medium' edge='end' color='inherit' aria-label='logo'>
+                            <Face3Icon/>
+                            </IconButton>
+                            <Typography variant='h6' component='div'>
+                                Nadiia
+                            </Typography>
+                        </Stack>
                     </Stack>
                 </Stack>
             </Toolbar>
