@@ -9,8 +9,7 @@ const Header = () => {
 
     return (
         <AppBar position={"sticky"} color={"primary"}>
-            <Toolbar>
-                <Stack direction='row' spacing={40} sx={{display:'flex', justifyContent:'space-evenly', alignItems:'center'}} >
+                <Stack direction='row' spacing={12} sx={{display:'flex', justifyContent:'space-evenly', alignItems:'center'}} >
                     <Stack direction='row' spacing={2} sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
                         <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
                                  <TheatersIcon/>
@@ -21,9 +20,9 @@ const Header = () => {
                     </Stack>
 
                     <Stack spacing={2} direction={"row"}>
-                        <Button color='inherit' onClick={() => navigate('movies')}>All movies</Button>
-                        <Button color='inherit' onClick={() => navigate('genres')}>All genres</Button>
-                        <Button color='inherit' onClick={() => navigate('search')}>Search movies</Button>
+                        <Button size='large'  color='inherit' onClick={() => navigate('movies')}>All movies</Button>
+                        <Button size='large'  color='inherit' onClick={() => navigate('genres')}>All genres</Button>
+                        <Button size='large'  color='inherit' onClick={() => navigate('search')}>Search movies</Button>
                     </Stack>
 
                     <Stack spacing={2} direction='row'>
@@ -38,7 +37,6 @@ const Header = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-            </Toolbar>
         </AppBar>
     );
 };

@@ -17,6 +17,7 @@ const Movie: FC<IProps> = ({movie}) => {
 
     const showMovieInfo = () => {
             navigate({pathname: `${id}`}, {state: {...movie}})
+        window.scrollTo(0, 0)
     };
 
     return (
@@ -32,7 +33,8 @@ const Movie: FC<IProps> = ({movie}) => {
                     image={!poster_path? notImg: posterUrl+poster_path}
                     alt={title}
                 />
-                <CardContent>
+                <Stack sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <CardContent>
                     <Stack spacing={2}>
                         <Rating
                             max={10}
@@ -43,9 +45,10 @@ const Movie: FC<IProps> = ({movie}) => {
                         />
                     </Stack>
                 </CardContent>
-                <CardActions>
-                    <Button size='medium' onClick={showMovieInfo}> {title}</Button>
-                </CardActions>
+                    <CardActions>
+                        <Button size='large' onClick={showMovieInfo}> {title}</Button>
+                    </CardActions>
+                </Stack>
             </Card>
         </Box>
     );

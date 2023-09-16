@@ -12,7 +12,10 @@ const PaginationComponent = () => {
             <Pagination
                 count={total_pages}
                 page={+query.get('page')}
-                onChange={(_, num)=> setQuery({page:num.toString()})}
+                onChange={(_, num)=> {
+                    setQuery({page: num.toString()})
+                    window.scrollTo(0, 0)
+                }}
                 size="large"
                 sx={{margin:7}}
             />

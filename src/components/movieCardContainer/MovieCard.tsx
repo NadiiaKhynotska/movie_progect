@@ -14,8 +14,9 @@ import {
 
 import {IGenre, IMovie} from "../../interfaces";
 import {posterUrl} from "../../constans";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import notImg from "../../assets/not-found-img.jpg"
+import {Casts} from "../creditsContainer/Casts";
 
 interface IProps extends PropsWithChildren {
     genres: IGenre[];
@@ -23,8 +24,9 @@ interface IProps extends PropsWithChildren {
 }
 
 const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
-    const {title, poster_path, vote_average, genre_ids, overview} = currentMovie
+    const {title, poster_path, vote_average, genre_ids, overview,id} = currentMovie
     const navigate = useNavigate();
+
 
     const Wrapper = styled('div')({
         display:"flex",
@@ -67,7 +69,6 @@ const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
             <Box width='60%'>
                 <Card
                     sx={{
-                        height: 800,
                         margin: 2,
                         padding:2,
                         display:'flex',
@@ -83,12 +84,13 @@ const MovieCard: FC<IProps> = ({currentMovie, genres}) => {
                     <Typography gutterBottom variant='h5' component='div'>
                         {overview}
                     </Typography>
-                    <Stack spacing={3}>
+                    <Stack spacing={3} direction={'row'} sx={{margin:5}}>
                         <Typography>Genres:</Typography>
                         {genre_ids?.map(movieGenre => (
-                        <Badge key={movieGenre}>{genres?.filter(value => value.id === movieGenre)[0]?.name}</Badge>))}
+                        <Badge key={movieGenre} color="primary">{genres?.filter(value => value.id === movieGenre)[0]?.name}</Badge>))}
                     </Stack>
-                    <Button size='small' onClick={()=>navigate(-1)} sx={{margin:7}} > Back to all movies</Button>
+                    <Casts id={id}/>
+                    <Button size='large' onClick={()=>navigate(-1)} sx={{marginTop:5}} > Back to all movies</Button>
                 </Card>
             </Box>
         </Wrapper>

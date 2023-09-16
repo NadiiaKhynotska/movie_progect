@@ -1,6 +1,6 @@
 import {ICast} from "./castInterface";
 
-export interface ICredit {
+export interface ICredit<DATA> {
     id: number;
-    cast: ICast[];
+    cast: DATA[];
 }
