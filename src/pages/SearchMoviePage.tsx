@@ -4,7 +4,7 @@ import {Container, TextField} from "@mui/material";
 import { SearchMovies} from "../components";
 
 const SearchMoviePage = () => {
-    const [keyWord, setKeyWord] = useState("" || localStorage.getItem('keyWord'))
+    const [keyWord, setKeyWord] = useState(!localStorage.getItem('keyWord')? "": localStorage.getItem('keyWord'))
 
     return (
         <div>
