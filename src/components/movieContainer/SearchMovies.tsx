@@ -21,7 +21,6 @@ const SearchMovies: FC<IProps> = ({keyWord}) => {
     const [query] = useSearchParams({page: '1'});
     const page = +query.get('page')
 
-
     useEffect(() => {
         dispatch(movieActions.getSearchedMovies({page:page, query:keyword}))
     }, [keyword, page, dispatch]);
